@@ -86,6 +86,7 @@ class Konest
       f = File.new("data/t2/#{@id}", 'w')
       f.puts response.body
       f.close
+      logger_t2.info("#{@id} not empty.")
       return true
     rescue 
       logger_t2.info("#{@id} is empty.")
@@ -103,6 +104,7 @@ class Konest
       f = File.new("data/t3/#{@id}", 'w')
       f.puts response.body
       f.close
+      logger_t3.info("#{@id} not empty.")
       return true
     rescue 
       logger_t3.info("#{@id} is empty.")
