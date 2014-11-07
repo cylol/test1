@@ -1,6 +1,7 @@
 require 'httparty'
 require 'logger'
 require 'fileutils'
+require 'debugger'
 require_relative '../header'
 
 class Openrice
@@ -32,7 +33,8 @@ class Openrice
 
   def downloadmap
     begin
-      response = HTTParty.get("http://m.openrice.com/zh/restaurant/map/#{id}?tc=Sr2", headers: Header.mobile )
+      response = HTTParty.get("http://m.openrice.com/zh/restaurant/map/#{@id}?tc=Sr2", headers: Header.mobile )
+      # debugger
       if response.code != 200
         logger_map.debug("#{@id} not 200")
         return false
