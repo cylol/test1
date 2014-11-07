@@ -22,6 +22,7 @@ class ShopParser
   def parse
     begin
       @shop.name =  @doc.xpath("//div[@class='rest-title-label']").text.strip
+      @shop.area_address = @doc.xpath("//img[@src='/content/or/images/icon_info_address@2x.png']/..").text.strip
       @shop.phone = @doc.xpath("//img[@src='/content/or/images/icon_info_photo_number@2x.png']/..").text.strip
       @shop.tags = @doc.xpath("//img[@src='/content/or/images/icon_info_type@2x.png']/..").text.strip
       @shop.cost = @doc.xpath("//img[@src='/content/or/images/icon_info_price@2x.png']/..").text.strip
