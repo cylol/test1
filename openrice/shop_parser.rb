@@ -2,8 +2,7 @@
 require 'nokogiri'
 require 'json'
 require 'logger'
-require 'debugger'
-require 'URI'
+require 'uri'
 require 'cgi'
  
 
@@ -21,19 +20,23 @@ class ShopParser
   end 
 
   def parse
-    @shop.name =  @doc.xpath("//div[@class='rest-title-label']").text.strip
-    @shop.phone = @doc.xpath("//img[@src='/content/or/images/icon_info_photo_number@2x.png']/..").text.strip
-    @shop.tags = @doc.xpath("//img[@src='/content/or/images/icon_info_type@2x.png']/..").text.strip
-    @shop.cost = @doc.xpath("//img[@src='/content/or/images/icon_info_price@2x.png']/..").text.strip
-    @shop.star = @doc.xpath("//img[@src='/content/or/images/icon_info_overall@2x.png']/..").text.strip.split(' ')[-1]
-    @shop.review_totol = @doc.xpath("//div[@id='divReview']//span[@class='tabnumber']").text
-    @doc.xpath("//div[@class='sr2-moresetail']//li").each do |li|
-      parse_description(li)
-    end
-    url = @poid.xpath("//a[@id='aDirection']").attr('href')
-    co = CGI.parse(URI.parse(url).query)['daddr'][0]
-    @shop.longitude = co.split(',')[0]
-    @shop.latitude = co.split(',')[-1]
+    begin
+      @shop.name =  @doc.xpath("//div[@class='rest-title-label']").text.strip
+      @shop.phone = @doc.xpath("//img[@src='/content/or/images/icon_info_photo_number@2x.png']/..").text.strip
+      @shop.tags = @doc.xpath("//img[@src='/content/or/images/icon_info_type@2x.png']/..").text.strip
+      @shop.cost = @doc.xpath("//img[@src='/content/or/images/icon_info_price@2x.png']/..").text.strip
+      @shop.star = @doc.xpath("//img[@src='/content/or/images/icon_info_overall@2x.png']/..").text.strip.split(' ')[-1]
+      @shop.review_totol = @doc.xpath("//div[@id='divReview']//span[@class='tabnumber']").text
+      @doc.xpath("//div[@class='sr2-moresetail']//li").each do |li|
+        parse_description(li)
+      end
+      url = @poid.xpath("//a[@id='aDirection']").attr('href')
+      co = CGI.parse(URI.parse(url).query)['daddr'][0]
+      @shop.longitude = co.split(',')[0]
+      @shop.latitude = co.split(',')[-1]
+    rescue => e
+      logger.error("#{@id} with e")
+    end  
   end
 
   def parse_description(li)
@@ -59,7 +62,7 @@ class ShopParser
   end
     
   def logger
-    @logger ||= Logger.new('tiparser.log')
+    @logger ||= Logger.new('tiparsererr.log')
   end 
 end   
 
