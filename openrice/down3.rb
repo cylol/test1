@@ -2,7 +2,7 @@ require_relative 'request'
 
 Openrice.new(nil).init_folder
 
-logger = Logger.new('system.log')
+logger = Logger.new('system3.log')
 
 threads = []
 
