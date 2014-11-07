@@ -1,0 +1,5 @@
+/root/.rbenv/versions/1.9.3-p550/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require': cannot load such file -- debugger (LoadError)
+	from /root/.rbenv/versions/1.9.3-p550/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	from /data/test1/openrice/request.rb:4:in `<top (required)>'
+	from downpoi.rb:1:in `require_relative'
+	from downpoi.rb:1:in `<main>'
