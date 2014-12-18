@@ -1,7 +1,6 @@
 require 'httparty'
 require 'logger'
 require 'fileutils'
-require 'debugger'
 require_relative '../header'
 
 class TimeSq

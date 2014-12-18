@@ -1,13 +1,13 @@
 require 'nokogiri'
-require 'debugger'
 require_relative 'request'
 
 logger = Logger.new('system3.log')
 
 
+TimeSq.new(1).init_folder
 
 
-main = Nokogiri::HTML(File.read("data/main"))
+main = Nokogiri::HTML(File.read("main"))
 
 catas = {}
 
@@ -15,6 +15,11 @@ main.xpath("//td[@class='catagories']").each do |c|
   catas[c.attr('id')] = c.to_html.match(/(?<=<bodytext>)(\w| |\/)+/)
 end
 
+catas.key.each do |ccc|
+  TimeSq.new(1).download_cata(ccc)
+end  
+
+Timesq.new(1).download_images
 
 catas_shop = {}
 
