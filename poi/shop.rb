@@ -24,7 +24,7 @@
     # info.append(self.description)
 
 
- #coding:utf-8
+#coding:utf-8
 require 'mysql2'
 require 'active_record'
 require 'date'
@@ -57,6 +57,16 @@ class ShopsCuisine < ActiveRecord::Base
   belongs_to :cuisine
 end  
 
+
+class CitysCuisine < ActiveRecord::Base
+  # accepts_nested_attributes_for :shop_id, :cuisine_id
+
+  # belongs_to :shop
+  belongs_to :cuisine
+  serialize :map
+  serialize :map_v1 
+end  
+
 class ShopsGood < ActiveRecord::Base
   # accepts_nested_attributes_for :shop_id, :good_id
 
@@ -72,26 +82,55 @@ class ShopsDiningoption < ActiveRecord::Base
   belongs_to :diningoption
 end
 
-class Neighborhood < ActiveRecord::Base
+class Neighborhood < ActiveRecord::Base #174
   # accepts_nested_attributes_for :name
 end  
 
 
-class Cuisine < ActiveRecord::Base
+class Cuisine < ActiveRecord::Base #174
   # accepts_nested_attributes_for :name
 end
 
 
-class Good < ActiveRecord::Base
+class Good < ActiveRecord::Base #11
   # accepts_nested_attributes_for :name
 end
 
 
-class Diningoption < ActiveRecord::Base
+class Diningoption < ActiveRecord::Base #11
   # accepts_nested_attributes_for :name
 end
 
-class Shop < ActiveRecord::Base
+class DpCityCuisine < ActiveRecord::Base
+  
+end  
+
+class ShopsCuisineRef < ActiveRecord::Base
+  belongs_to :shop
+end
+
+class CitysNewCuisine < ActiveRecord::Base
+
+end
+
+class Cata <  ActiveRecord::Base  
+  belongs_to :shop
+end
+
+class Tashop <  ActiveRecord::Base
+  self.primary_key = 'ShopID'
+  def generate_shop_record
+    ll = self.Location.split(',') rescue []
+    shop = Shop.create(shop_id: self.ShopID, city_id: self.CityID, name: self.ShopName, address: self.Address, phone: self.PhoneNo, latitude: ll[0], longitude: ll[-1], star: self.Score, review_total: self.ReviewCount, avg_price: self.AvgPrice)
+    shop.insert_cuisines(self.Cuisine)
+    shop.insert_goods(self.GoodFor)
+    shop.insert_diningoptions(self.Dining)
+    shop.insert_neighborhoods(self.Neighborhood)
+  end  
+end  
+
+
+class Shop < ActiveRecord::Base #2332 343
   self.primary_key = 'shop_id'
   # accepts_nested_attributes_for :city_id, :name, :address, :address_html, :phone, :latitude, :longitude, :review_total, :star, :food_score, :service_score,
   #   :value_score, :atmosphere_score, :avg_price, :hours
@@ -105,12 +144,21 @@ class Shop < ActiveRecord::Base
   has_many :goods, through: :shops_goods, foreign_key: :good_id
   has_many :diningoptions, through: :shops_diningoptions
   has_many :neighborhood, through: :shops_neighborhoods
+  has_many :shops_cuisine_refs
+  has_many :catas
+
+  serialize :map
+  serialize :map_v1 
 
   @@cuisines = Cuisine.all.map{|g| [g.name, g.id] }.to_h
   @@goods = Good.all.map{|g| [g.name, g.id] }.to_h
   @@diningoptions = Diningoption.all.map{|g| [g.name, g.id] }.to_h
   @@neighborhoods = Neighborhood.all.map{|g| [g.name, g.id] }.to_h
+  @@cityscuisines = CitysCuisine.all.map{|c| [[c.city_id, c.cuisine_id], { 'map' => c.map, 'map_v1' => c.map_v1 } ]}.to_h
 
+  def self.cityscuisines
+    @@cityscuisines
+  end  
 
   def self.insert_shop(line)
     begin 
@@ -220,5 +268,23 @@ class Shop < ActiveRecord::Base
 
 end
 
+class Dpcata < ActiveRecord::Base
 
+end  
+
+class Cuisine < ActiveRecord::Base
+  # accepts_nested_attributes_for :name
+end
+
+class SimpleCataMap < ActiveRecord::Base
+  # :ta_cata, :dp_cata, sortkey
+end  
+
+# byebug
+
+class CataOld < ActiveRecord::Base
+
+end  
+
+puts 'end'
 #     

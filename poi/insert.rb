@@ -13,10 +13,14 @@ end
 
 files = Dir["../TAPOI2/*.info"]
 
-files.each_slice(2).each do |fs|
-  threads = []
-  fs.each do |f|
-    threads << Thread.new { inser_file("../TAPOI2/60763.info") }
-  end
-  threads.each { |thread| thread.join }
+# files.each_slice(2).each do |fs|
+#   threads = []
+#   fs.each do |f|
+#     threads << Thread.new { inser_file(f) }
+#   end
+#   threads.each { |thread| thread.join }
+# end  
+
+files.each do |f|
+  inser_file(f)
 end  
