@@ -1,0 +1,1 @@
+Cata.where(shop_id: (Cata.where(name: '素菜').pluck(:shop_id) & Cata.where(name: '素食').pluck(:shop_id))).where(name: '素菜').destroy_all

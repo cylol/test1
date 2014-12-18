@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>oversea</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>7272558556852726423</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK8QDwcIFRYXGBkfICEoLDA0OFUkbnVs
+			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
+			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
+			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
+			HB6hG4AHoR2ACIAJUTEJ0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nl
+			c18QE05TTXV0YWJsZURpY3Rpb25hcnmjJCYnXE5TRGljdGlvbmFy
+			eVhOU09iamVjdNIKCykroSqAC4AN0gstLi9ZTlMuc3RyaW5ngAxS
+			aWTSIiMxMl8QD05TTXV0YWJsZVN0cmluZ6MxMydYTlNTdHJpbmfS
+			IiM1Nl5OU011dGFibGVBcnJheaM1NydXTlNBcnJhedIiIyY5oiYn
+			XxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAIABEAGgAjAC0A
+			MgA3AEkATwBWAF4AaQBwAHQAdgB4AHoAfgCAAIIAhACGAIsAkACV
+			AL4AxQDHAMkAywDNAM8A0QDSANcA4gDrAQEBBQESARsBIAEiASQB
+			JgErATUBNwE6AT8BUQFVAV4BYwFyAXYBfgGDAYYBmAGbAaAAAAAA
+			AAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABog==
+			</data>
+			<key>contentSortCol</key>
+			<string>city_id</string>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1141, 601}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from (select cuisine_id, count(shop_id) cs from shops_cuisines where shop_id in (select shop_id from shops_cuisines where cuisine_id = 93 ) group by cuisine_id) sc, cuisines where cuisines.id = sc.cuisine_id order by cs desc
+
+select * from shops_cuisines where shop_id in (select shop_id from shops_cuisines where cuisine_id = 93 )
+
+select distinct(city_id) from shops
+
+select dcl.CategoryName, sum(cst.cs)  from (select count(ShopID) cs, CategoryID from DP_ShopCategory group by CategoryID) cst, (select distinct(categoryID), CategoryName, CategoryType from `DP_CategoryList` ) dcl where cst.CategoryID = dcl.CategoryID and dcl.CategoryType = 1 group by dcl.CategoryName
+
+
+select DP_CategoryList.CategoryName, cst.cs  from (select count(ShopID) cs, Distinct(CategoryID) from DP_ShopCategory group by CategoryID) cst, `DP_CategoryList`	 where cst.CategoryID = `DP_CategoryList`.CategoryID and DP_CategoryList.CategoryType = 1 
+
+
+select count(ShopID) cs, CategoryID from DP_ShopCategory group by CategoryID
+
+select * from DP_CategoryList where CategoryID = 35
+
+
+select cuisines.id , cuisines.name, sg.cs from (select cuisine_id, count(shop_id) cs from shops_cuisines group by cuisine_id) sg, cuisines where cuisines.id = sg.cuisine_id
+
+select chinesename from cuisines 
+
+select tp.TACityID, tp.DPcityID, CategoryID, CategorySearchName, ShopHits from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.cityID 
+
+
+select distinct(city_id) from shops
+
+#ta城市tag
+select cuisine_id, count(shop_id) from shops_cuisines where shop_id in (select shop_id from shops where city_id = 32655) group by cuisine_id
+
+
+
+</string>
+			<key>table</key>
+			<string>citys_cuisines</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>275</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select cuisine_id, count(shop_id) from shops_cuisines where shop_id in (select shop_id from shops where city_id = 32655) group by cuisine_id</string>
+		<string>select count(cuisine_id), shop_id from shops_cuisines where shop_id in (select shop_id from shops where city_id = 32655) and shop_id in (select shop_id from shops_cuisines where cuisine_id = 20) group by `shop_id`</string>
+		<string>select count(cuisine_id), shop_id from shops_cuisines where shop_id in (select shop_id from shops where city_id = 32655) group by `shop_id`</string>
+		<string>select * from shops_cuisines where shop_id in (select shop_id from shops where city_id = 32655)</string>
+		<string>CREATE TABLE `dp_city_cuisines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `dp_city_id` int(11) NOT NULL,
+  `cata_id` int(11) NOT NULL,
+  `cata_name` int(11) NOT NULL,
+  `shophits` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_dp_city_cuisines_on_city_id` (`city_id`),
+  KEY `index_dp_city_cuisines_on_cuisine_id` (`dp_city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</string>
+		<string>select tp.TACityID, tp.DPcityID, CategoryID, CategorySearchName, ShopHits from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.cityID</string>
+		<string>select tp.TACityID, ta.DPCityID, CategoryID, CategorySearchName, ShopHits from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.cityID</string>
+		<string>select tp.TACityID, ta.DPcityID, CategoryID, CategorySearchName, ShopHits from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.cityID</string>
+		<string>select * from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.cityID</string>
+		<string>select * from (select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)) tp, DP_CategoryList dl where tp.DPcityID = dl.DPcityID</string>
+		<string>select TACityID, DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)</string>
+		<string>select TACityID， DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)</string>
+		<string>select TA_DP_City， DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)</string>
+		<string>select DPcityID from TA_DP_City where TACityID in (select distinct(city_id) from shops)</string>
+		<string>select distinct(city_id) from shops</string>
+		<string>CREATE TABLE `citys_cuisines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `cuisine_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_shops_cuisines_on_city_id` (`city_id`),
+  KEY `index_shops_cuisines_on_cuisine_id` (`cuisine_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</string>
+		<string>select chinesename from cuisines</string>
+		<string>select cuisines.id , cuisines.name, sg.cs from (select cuisine_id, count(shop_id) cs from shops_cuisines group by cuisine_id) sg, cuisines where cuisines.id = sg.cuisine_id</string>
+		<string>select cuisines.name, sg.cs from (select cuisine_id, count(shop_id) cs from shops_cuisines group by cuisine_id) sg, cuisines where cuisines.id = sg.cuisine_id</string>
+		<string>select cuisine_id, count(shop_id) cs from shops_cuisines group by cuisine_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.15</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
